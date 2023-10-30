@@ -1,0 +1,53 @@
+
+type Geography {
+    country: String
+    province: String
+    city: String
+}
+type UserInfo {
+    id: String!
+    avatar: String
+    userName: String
+    company: String
+    description: String
+    career: String
+    place: Geography
+    address: String
+    enterTime: String
+    personalPage: String
+    github: String
+}
+type TokenInfo {
+    tokenName: String
+    tokenValue: String
+    isLogin: Boolean
+    loginId: Object
+    loginType: String
+    tokenTimeout: Long
+    sessionTimeout: Long
+    tokenSessionTimeout: Long
+    tokenActivityTimeout: Long
+}
+type LoginInfo {
+    userInfo: UserInfo
+    tokenInfo: TokenInfo
+}
+input PasswordLoginParameter {
+    userName: String
+    password: String
+    phone: String
+    email: String
+    validationCode: String
+}
+
+extend type Query {
+    registered(name: String!): Boolean
+    pbUserInfo(id: String!): UserInfo
+}
+
+extend type Mutation {
+    passwordLogin(user: PasswordLoginParameter): LoginInfo
+    passwordRegister(user: PasswordLoginParameter): LoginInfo
+}
+
+

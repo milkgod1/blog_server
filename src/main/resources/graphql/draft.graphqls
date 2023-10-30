@@ -1,0 +1,54 @@
+
+enum EditorType {
+    markdown
+    richText
+}
+
+input publishInput {
+    id: Long!
+    aid: Long
+    uid: String!
+    title: String!
+    content: String!
+    kindId: String!
+    tagId: String!
+    coverImage: String
+    coverDescription: String!
+    createTime: String!
+    editorType: EditorType
+}
+
+
+type EditorBody {
+    id: String,
+    title: String
+    createTime: Long
+    aid: String
+    uid: String
+    content: String
+    kindId: String
+    tagId: String
+    coverImage: String
+    coverDescription: String
+    editorType: EditorType
+}
+
+input draftQuery {
+    title: String
+    page: Int = 0
+    size: Int = 10
+}
+type PageableQueryResult {
+    drafts: [EditorBody]
+    pageInfo: Page
+}
+
+extend type Query {
+    getEditor(id: String): EditorBody
+    getAllDraft: [EditorBody]
+    draftQuery(query: draftQuery): PageableQueryResult
+}
+
+extend type Mutation {
+    publishDraft(draft: publishInput): String
+}

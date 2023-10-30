@@ -1,0 +1,38 @@
+enum OrderBy {
+    time
+    hot
+    recommend
+}
+
+type Article {
+    id: String!
+    uid: String!
+    did: String!
+    title: String!
+    content: String!
+    kindId: String!
+    tagId: String!
+    coverImage: String
+    coverDescription: String!
+    submitTime: Long!
+    see: Int
+    like: Int
+    commentId: [String]
+    checked: Boolean
+}
+
+input ArticleSearchParam {
+    page: Int = 0
+    size: Int = 10
+    sort: Int = 0
+    query: String
+    period: Int = 0
+}
+
+type Query {
+    getArticleList(p: ArticleSearchParam!): Article
+}
+
+type Mutation {
+
+}

@@ -1,0 +1,16 @@
+scalar Long
+scalar Object
+
+input T {
+    a: Int
+}
+
+type Page {
+    page: Int!
+    size: Int!
+    count: Long!
+}
+
+extend type Query {
+    test(input: T): Int
+}
